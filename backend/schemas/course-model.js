@@ -18,6 +18,10 @@ const courseSchema = mongoose.Schema({
         {
           title: String,
           link: String,
+          isDone: {
+            type: Boolean,
+            default: false,
+          },
           quiz: {
             title: String,
             questions: [
