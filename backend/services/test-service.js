@@ -5,7 +5,8 @@ const openai = new OpenAIApi(
   })
 );
 
-const requirements = "Create a detailed roadmap that takes the user from beginner to advanced. Provide an outline with modules, items and one project idea for each model, including real links to external resources for each item. Return the roadmap in JSON format, simulating a response to a GET request.";
+const requirements =
+  "Create a detailed roadmap that takes the user from beginner to advanced. Provide an outline with modules, items and one project idea for each model, including real links to external resources for each item. Return the roadmap in JSON format, simulating a response to a GET request.";
 module.exports.Testing = async (prompt) => {
   try {
     const promptText = `prompt:${prompt}\nrequirement:${requirements}`;
@@ -18,8 +19,9 @@ module.exports.Testing = async (prompt) => {
       frequency_penalty: 0,
       presence_penalty: 0,
     });
-    const content = [response.data.choices[0].text]
-    return content;
+    const content = [response.data.choices[0].text.trim()];
+    const cleanedArray = JSON.parse(content[0]);
+    return cleanedArray;
   } catch (error) {
     throw new Error(error.message);
   }
